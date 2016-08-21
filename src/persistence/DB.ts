@@ -8,13 +8,13 @@ export class DB {
         this.db = new DynamoDB()
     }
 
-    store(item: any, condition: any) {
+    store(item: any, condition: any, callback: any) {
         item = this.formatItem(item)
         this.db.putItem({
             TableName: this.table,
             Item: item,
             ConditionExpression: condition
-        })
+        }, callback)
     }
 
     get(key: any, callback: (err: any, data: any) => void) {

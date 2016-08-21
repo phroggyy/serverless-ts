@@ -26,7 +26,7 @@ export class AuthService {
     storeUser(email: string, password: string, salt: string, fn: Function) {
         // Bytesize
         var len = 128;
-        crypto.randomBytes(len, function (err: any, bufferedToken: Buffer) {
+        crypto.randomBytes(len, (err: any, bufferedToken: Buffer) => {
             if (err) return fn(err)
             let token: string = bufferedToken.toString('hex')
 

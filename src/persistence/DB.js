@@ -5,13 +5,13 @@ var DB = (function () {
         this.table = table;
         this.db = new aws_sdk_1.DynamoDB();
     }
-    DB.prototype.store = function (item, condition) {
+    DB.prototype.store = function (item, condition, callback) {
         item = this.formatItem(item);
         this.db.putItem({
             TableName: this.table,
             Item: item,
             ConditionExpression: condition
-        });
+        }, callback);
     };
     DB.prototype.get = function (key, callback) {
         var item = {

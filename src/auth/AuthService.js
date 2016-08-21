@@ -24,13 +24,14 @@ var AuthService = (function () {
         });
     };
     AuthService.prototype.storeUser = function (email, password, salt, fn) {
+        var _this = this;
         // Bytesize
         var len = 128;
         crypto.randomBytes(len, function (err, bufferedToken) {
             if (err)
                 return fn(err);
             var token = bufferedToken.toString('hex');
-            this.db.store({
+            _this.db.store({
                 email: email,
                 passwordHash: password,
                 passwordSalt: salt,
